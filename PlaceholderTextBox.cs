@@ -222,7 +222,7 @@ namespace System.Windows.Forms
                           if (Modified)//Only do this part if the event was fired from user input, in case of setting text programmatically, all the text is replaced
                           {
                               // Throw away the placeholder but leave the new typed text
-                              Text = Text.Substringx(0, TextLength - PlaceholderText.Length);
+                              Text = Text.Substring(0, TextLength - PlaceholderText.Length);
 
                               // Set Selection to last position
                               Select(TextLength, 0);
