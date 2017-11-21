@@ -218,12 +218,16 @@ namespace System.Windows.Forms
                       if (IsPlaceholderActive && Text != PlaceholderText)
                       {
                           IsPlaceholderActive = false;
+                          
+                          //Only do this part if the event was fired from user input, in case of setting text programmatically, all the text is replaced
+                          if (Modified)
+                          {
+                              // Throw away the placeholder but leave the new typed text
+                              Text = Text.Substringx(0, TextLength - PlaceholderText.Length);
 
-                          // Throw away the placeholder but leave the new typed text
-                          Text = Text.Substring(0, TextLength - PlaceholderText.Length);
-
-                          // Set Selection to last position
-                          Select(TextLength, 0);
+                              // Set Selection to last position
+                              Select(TextLength, 0);
+                          }
                       }
                   });
         }
